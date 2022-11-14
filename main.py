@@ -17,6 +17,24 @@ app_secret = os.environ["APP_SECRET"]
 user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
 
+def get_date():
+  weekday_num = date.today().weekday()
+  if weekday_num == 0:
+    today_date = str(date.today()) + '  星期一'
+  elif weekday_num == 1:
+    today_date = str(date.today()) + '  星期二'
+  elif weekday_num == 2:
+    today_date = str(date.today()) + '  星期三'
+  elif weekday_num == 3:
+    today_date = str(date.today()) + '  星期四'
+  elif weekday_num == 4:
+    today_date = str(date.today()) + '  星期五'
+  elif weekday_num == 5:
+    today_date = str(date.today()) + '  星期六'
+  elif weekday_num == 6:
+    today_date = str(date.today()) + '  星期日'
+  return today_date
+
 
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
@@ -48,6 +66,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"today_date":{"value":get_date()},"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
