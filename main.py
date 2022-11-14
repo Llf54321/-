@@ -36,6 +36,9 @@ def get_date():
     today_date = str(date.today()) + '  星期日'
   return today_date
 
+def get_reporter():
+  reporters = ['厨师猪','小宝猪','企鹅仔','大企鹅包','噗噗','啾咪军团','树懒包包']
+  return random.choice(reporters)
 
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
@@ -67,7 +70,7 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"today_date":{"value":get_date()},"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count(),"color":"#FFC0CB"},"birthday_left":{"value":get_birthday(),"color":"#1E90FF"},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"reporter":{'value':get_reporter(),'color':"#0000FF"},"today_date":{"value":get_date()},"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count(),"color":"#FFC0CB"},"birthday_left":{"value":get_birthday(),"color":"#1E90FF"},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
 
