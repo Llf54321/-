@@ -21,3 +21,13 @@ jobs:
         python-version: '3.x'
         architecture: 'x64'
     - run: pip install -r ./requirements.txt && python ./main.py
+
+    env:
+      APP_ID: ${{ wx619beefafd1f1bcd }}
+      APP_SECRET: ${{ 178180539452c039e865c90e29b0163d }}
+      TEMPLATE_ID: ${{  oXdd6Cm-BHHyhxYKGtT64NuT9IyXn90CDVXdCrhSEKc  }}
+      USER_ID: ${{ ovFzt6nEDrUhWJBxsm5o6rm6nTBA }}
+      START_DATE: ${{ 12-17 }}
+      BIRTHDAY: ${{1999-12-17 }}
+      CITY: ${{ 哈尔滨 }}
+      USERS_ID: ${{ ovFzt6nEDrUhWJBxsm5o6rm6nTBA }}
